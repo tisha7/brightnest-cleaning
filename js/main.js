@@ -1,24 +1,39 @@
 /* BrightNest Cleaning — site interactions */
 
 document.addEventListener("DOMContentLoaded", () => {
-  const config = window.BRIGHTNEST_CONFIG || {};
+  const revealElements = document.querySelectorAll(".pp-reveal");
 
-  document.querySelectorAll("[data-brand-name]").forEach((el) => {
-    if (config.brandName) el.textContent = config.brandName;
-  });
+  if ("IntersectionObserver" in window) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("active");
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
 
-  document.querySelectorAll("a[href^=\"#\"]").forEach((link) => {
+    revealElements.forEach((el) => observer.observe(el));
+  } else {
+    revealElements.forEach((el) => el.classList.add("active"));
+  }
+
+  document.querySelectorAll('a[href^="#"]').forEach((link) => {
     link.addEventListener("click", (event) => {
       const targetId = link.getAttribute("href");
-      if (!targetId || targetId === "#") return;
-      const target = document.querySelector(targetId);
-      if (!target) return;
-      event.preventDefault();
-      target.scrollIntoView({ behavior: "smooth", block: "start" });
-    });
-  });
 
-  document.querySelectorAll(".pp-reveal").forEach((section) => {
-    section.classList.add("is-visible");
+      if (!targetId || targetId === "#") return;
+
+      const target = document.querySelector(targetId);
+
+      if (!target) return;
+
+      event.preventDefault();
+
+      target.scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+      });
+    });
   });
 });
