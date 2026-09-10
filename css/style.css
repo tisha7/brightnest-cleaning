@@ -226,17 +226,7 @@ body p {
   font: 700 16px/1 "DM Sans", sans-serif;
 }
 
-.pp-btn-price {
-  padding-left: 13px;
-  border-left: 1px solid rgba(255, 255, 255, 0.38);
-  font: 800 18px/1 "Manrope", sans-serif;
-}
 
-.pp-btn-old-price {
-  color: rgba(255, 255, 255, 0.66);
-  font: 500 12px/1 "DM Sans", sans-serif;
-  text-decoration: line-through;
-}
 
 .pp-secondary-note {
   margin: 13px 0 0;
@@ -1272,8 +1262,10 @@ body p {
 .pp-pricing {
   position: relative;
   overflow: hidden;
-  padding: 110px 0;
-  background: var(--cream);
+  padding: 116px 24px 112px;
+  background:
+    radial-gradient(circle at 15% 20%, rgba(42,157,143,0.11), transparent 27%),
+    radial-gradient(circle at 88% 80%, rgba(242,107,91,0.06), transparent 24%);
   color: var(--text);
   scroll-margin-top: 40px;
 }
@@ -2448,13 +2440,6 @@ body summary:focus-visible {
    BRIGHTNEST — OFFER + FAQ FINAL POLISH
    ========================================================= */
 
-.pp-pricing {
-  padding: 116px 24px 112px;
-  background:
-    radial-gradient(circle at 15% 20%, rgba(42,157,143,0.11), transparent 27%),
-    radial-gradient(circle at 88% 80%, rgba(242,107,91,0.06), transparent 24%),
-    #EAF6F5;
-}
 
 
 /* Benefits */
@@ -2569,5 +2554,36 @@ body summary:focus-visible {
   .pp-faq-item p {
     padding: 0 17px 20px;
     font-size: 14px;
+  }
+}
+
+/* =========================================================
+   BRIGHTNEST — ACCESSIBILITY / REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .pp-reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .pp-primary-btn,
+  .bn-hero-image,
+  .pp-chapter-card,
+  .pp-testi-card,
+  .pp-faq-item {
+    transition: none;
+  }
+
+  .pp-primary-btn:hover,
+  .bn-hero-image:hover,
+  .pp-chapter-card:hover,
+  .pp-testi-card:hover {
+    transform: none;
   }
 }
