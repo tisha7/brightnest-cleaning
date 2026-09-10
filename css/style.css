@@ -2219,6 +2219,12 @@ body summary:focus-visible {
   color: rgba(255, 255, 255, 0.72);
 }
 
+.pp-trust-item .pp-trust-icon {
+  background: var(--teal);
+  color: #ffffff;
+  opacity: 1;
+}
+
 /* Problem section */
 
 .pp-problem {
